@@ -31,6 +31,24 @@ int handle_string(va_list args)
 }
 
 /**
+ * handle_dec - handles integers
+ * @args: argument being passed
+ *
+ * Return: length of the buff
+ */
+
+int handle_int(va_list args)
+{
+	char *buff[20];
+	int dec = va_arg(args, int);
+
+	snprintf(buff, sizeof(buff), "%d", d);
+	write(1, buff, strlen(buff));
+	return (strlen(buff));
+}
+	
+
+/**
 * _printf - function that produces an output according to the format
 * @format: character string
 * Return: The characters declared within the format
@@ -71,6 +89,10 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				i += handle_string(args);
+			}
+			else if (*format == 'i' || *format == 'd')
+			{
+				i += handle_dec(args);
 			}
 		}
 		format++;
