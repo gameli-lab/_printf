@@ -1,4 +1,35 @@
 #include "main.h"
+
+/**
+ * handle_char - the function takes one argument
+ * @args: the argument being passed
+ * Return: 1 to the standard output
+ */
+int handle_char (va_list args)
+{
+	char c = va_arg(args, int);
+
+	write(1, &c, 1);
+	return (1);
+}
+
+/**
+ * handle_string - its a function that handles the strings
+ * @args: the argument being passed
+ * Return: the length of the string
+ */
+int handle_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+
+	int str_len = 0;
+
+	while (str[str_len] != '\0')
+		str_len++;
+	write(1, str, str_len);
+		return (str_len);
+}
+
 /**
 * _printf - function that produces an output according to the format
 * @format: character string
@@ -19,7 +50,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write (1, format, 1);
+			write(1, format, 1);
 			i++;
 		}
 		else
@@ -30,30 +61,20 @@ int _printf(const char *format, ...)
 
 			if (*format == '%')
 			{
-				write (1, format, 1);
+				write(1, format, 1);
 				i++;
 			}
 			else if (*format == 'c')
 			{
-				char c = va_arg(args, int);
-				write (1, &c, 1);
-				i++;
+				i += handle_char(args);
 			}
 			else if (*format == 's')
 			{
-				char *str = va_arg(args, char *);
-
-				int str_len = 0;
-
-				while (str[str_len] != '\0')
-					str_len++;
-
-				write (1, str, str_len);
-				i += str_len;
+				i += handle_string(args);
 			}
 		}
 		format++;
 	}
-
 	va_end(args);
+	return (i);
 }
