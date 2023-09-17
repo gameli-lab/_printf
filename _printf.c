@@ -37,7 +37,7 @@ int handle_string(va_list args)
  * Return: length of the buff
  */
 
-int handle_int(va_list args)
+int handle_dec(va_list args)
 {
 	int dec = va_arg(args, int);
 
