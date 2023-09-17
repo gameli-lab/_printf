@@ -39,9 +39,9 @@ int handle_string(va_list args)
 
 int handle_int(va_list args)
 {
-	char *buff[20];
 	int dec = va_arg(args, int);
 
+	char buff[20];
 	snprintf(buff, sizeof(buff), "%d", dec);
 	write(1, buff, strlen(buff));
 	return (strlen(buff));
