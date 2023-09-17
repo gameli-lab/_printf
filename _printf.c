@@ -42,7 +42,7 @@ int handle_int(va_list args)
 	char *buff[20];
 	int dec = va_arg(args, int);
 
-	snprintf(buff, sizeof(buff), "%d", d);
+	snprintf(buff, sizeof(buff), "%d", dec);
 	write(1, buff, strlen(buff));
 	return (strlen(buff));
 }
