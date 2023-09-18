@@ -5,7 +5,7 @@
  * @args: the argument being passed
  * Return: 1 to the standard output
  */
-int handle_char(va_list args)
+int handle_char (va_list args)
 {
 	char c = va_arg(args, int);
 
@@ -31,22 +31,19 @@ int handle_string(va_list args)
 }
 
 /**
- * handle_dec - handles integers
- * @args: argument being passed
- *
- * Return: length of the buff
+ * handle_int - the function takes one argument
+ * @args: the argument being passed
+ * Return: length of the integer
  */
-
-int handle_dec(va_list args)
+int handle_int(va_list args)
 {
-	int dec = va_arg(args, int);
-
-	char buff[20];
-	snprintf(buff, sizeof(buff), "%d", dec);
-	write(1, buff, strlen(buff));
-	return (strlen(buff));
-}
+        int dec = va_arg(args, int);
 	
+	char buff[30];
+	snprintf(buff, sizeof(buff), "%d", dec);
+        write(1, buff, strlen(buff));
+        return (strlen(buff));
+}
 
 /**
 * _printf - function that produces an output according to the format
@@ -90,9 +87,9 @@ int _printf(const char *format, ...)
 			{
 				i += handle_string(args);
 			}
-			else if (*format == 'i' || *format == 'd')
+			else if (*format == 'd' || *format == 'i')
 			{
-				i += handle_dec(args);
+				i += handle_int(args);
 			}
 		}
 		format++;
