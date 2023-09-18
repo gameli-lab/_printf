@@ -37,12 +37,13 @@ int handle_string(va_list args)
  */
 int handle_int(va_list args)
 {
-        int dec = va_arg(args, int);
-	
+	int dec = va_arg(args, int);
+
 	char buff[30];
+
 	snprintf(buff, sizeof(buff), "%d", dec);
-        write(1, buff, strlen(buff));
-        return (strlen(buff));
+	write(1, buff, strlen(buff));
+        return(strlen(buff));
 }
 
 /**
