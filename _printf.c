@@ -54,14 +54,11 @@ int handle_int(va_list args)
 int _printf(const char *format, ...)
 {
 	int i = 0;
-
 	va_list args;
 
 	if (format == NULL)
 		return (-1);
-
 	va_start(args, format);
-
 	while (*format)
 	{
 		if (*format != '%')
@@ -74,7 +71,6 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 				break;
-
 			if (*format == '%')
 			{
 				write(1, format, 1);
