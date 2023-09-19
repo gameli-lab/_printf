@@ -20,9 +20,15 @@ int handle_char (va_list args)
  */
 int handle_string(va_list args)
 {
+	int str_len;
+
 	char *str = va_arg(args, char *);
 
-	int str_len = 0;
+	if (str == NULL)
+	{
+		return (0);
+	}
+	str_len = 0;
 
 	while (str[str_len] != '\0')
 		str_len++;
