@@ -43,7 +43,7 @@ int function_for_string(va_list args)
  */
 int conversion_specifiers(va_list args)
 {
-	int n = va_arg(args, int);
+	unsigned int n = va_arg(args, unsigned int);
 
 	int i;
 
@@ -53,8 +53,7 @@ int conversion_specifiers(va_list args)
 
 	for (i = 31; i >= 0; i--)
 	{
-		binary[i] = (n & 1) ? '1' : '0';
-		n >>= 1;
+		binary[i] = (n & (1u << i)) ? '1' : '0';
 	}
 
 	write(1, binary, 32);
