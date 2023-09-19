@@ -5,7 +5,7 @@
  * @args: the argument being passed
  * Return: 1 to the standard output
  */
-int handle_char(va_list args)
+int function_for_char(va_list args)
 {
 	char c = va_arg(args, int);
 
@@ -18,18 +18,41 @@ int handle_char(va_list args)
  * @args: the argument being passed
  * Return: the length of the string
  */
-int handle_string(va_list args)
+int function_for_string(va_list args)
 {
 	char *str = va_arg(args, char *);
 
-	int str_len = 0;
+	int len = 0;
 
-	while (str[str_len] != '\0')
-		str_len++;
-	write(1, str, str_len);
-		return (str_len);
+	while (str[len] != '\0')
+		len++;
+	write(1, str, len);
+		return (len);
 }
+/**
+ * conversion_specifiers - handles custom conversion specifiers
+ * @args: the list of arguments
+ * Return: the conversion specifier
+ */
+int conversion_specifiers(va_list args)
+{
+	int n = va_arg(args, int);
 
+	int i;
+
+	int binary[33];
+
+	binary[32] = '\0';
+
+	for (i = 31; i >= 0; i--)
+	{
+		binary[i] = (n & 1) ? '1' : '0';
+		n >>= 1;
+	}
+
+	write(1, binary, 32);
+	return (32);
+}
 /**
  * handle_dec - handles integers
  * @args: argument being passed
@@ -37,16 +60,18 @@ int handle_string(va_list args)
  * Return: length of the buff
  */
 
-int handle_dec(va_list args)
+int function_for_dec(va_list args)
 {
 	int dec = va_arg(args, int);
 
 	char buff[20];
+
 	snprintf(buff, sizeof(buff), "%d", dec);
+
 	write(1, buff, strlen(buff));
 	return (strlen(buff));
 }
-	
+
 
 /**
 * _printf - function that produces an output according to the format
@@ -84,15 +109,19 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'c')
 			{
-				i += handle_char(args);
+				i += function_for_char(args);
 			}
 			else if (*format == 's')
 			{
-				i += handle_string(args);
+				i += function_for_string(args);
 			}
 			else if (*format == 'i' || *format == 'd')
 			{
-				i += handle_dec(args);
+				i += function_for_dec(args);
+			}
+			else if (*format == 'b')
+			{
+				i += conversion_specifiers(args);
 			}
 		}
 		format++;
