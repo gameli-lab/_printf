@@ -1,15 +1,12 @@
 #include "main.h"
 
 /**
- * handle_char - the function takes one argument
+ * function_for_char - the function takes one argument
  * @args: the argument being passed
  * Return: 1 to the standard output
  */
-<<<<<<< HEAD
+
 int function_for_char(va_list args)
-=======
-int handle_char (va_list args)
->>>>>>> b789cb871917f8f89247f30522a2624e81d3f268
 {
 	char c = va_arg(args, int);
 
@@ -18,25 +15,21 @@ int handle_char (va_list args)
 }
 
 /**
- * handle_string - its a function that handles the strings
+ * function_for_string - its a function that handles the strings
  * @args: the argument being passed
  * Return: the length of the string
  */
 int function_for_string(va_list args)
 {
-	int str_len;
-
 	char *str = va_arg(args, char *);
 
-<<<<<<< HEAD
 	int len = 0;
-=======
+
 	if (str == NULL)
 	{
 		return (0);
 	}
-	str_len = 0;
->>>>>>> b789cb871917f8f89247f30522a2624e81d3f268
+	len = 0;
 
 	while (str[len] != '\0')
 		len++;
@@ -68,34 +61,22 @@ int conversion_specifiers(va_list args)
 	return (32);
 }
 /**
- * handle_int - the function takes one argument
+ * function_for_dec - the function takes one argument
  * @args: the argument being passed
  * Return: length of the integer
  */
-<<<<<<< HEAD
 
 int function_for_dec(va_list args)
 {
 	int dec = va_arg(args, int);
 
 	char buff[20];
-=======
-int handle_int(va_list args)
-{
-	int dec = va_arg(args, int);
-
-	char buff[30];
->>>>>>> b789cb871917f8f89247f30522a2624e81d3f268
 
 	snprintf(buff, sizeof(buff), "%d", dec);
 
 	write(1, buff, strlen(buff));
 	return (strlen(buff));
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> b789cb871917f8f89247f30522a2624e81d3f268
 
 /**
 * _printf - function that produces an output according to the format
@@ -137,15 +118,11 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'd' || *format == 'i')
 			{
-<<<<<<< HEAD
 				i += function_for_dec(args);
 			}
 			else if (*format == 'b')
 			{
 				i += conversion_specifiers(args);
-=======
-				i += handle_int(args);
->>>>>>> b789cb871917f8f89247f30522a2624e81d3f268
 			}
 		}
 		format++;
