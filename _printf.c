@@ -29,10 +29,7 @@ int _printf(const char *format, ...)
 			if (*format == '\0')
 				break;
 
-			if ((*format == '%') || (*format == 'c') || (*format == 's') ||\
-				       	(*format == 'd') || (*format == 'i') ||	(*format == 'o') ||\
-				       	(*format == 'u') || (*format == 'h') || (*format == 'H') ||\
-				       	(*format == 'p'))
+			if (*format == '%' || *format == 'c' || *format == 's' || *format == 'd')
 			{
 				i += handle_printing(format, args);
 			}

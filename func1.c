@@ -9,7 +9,7 @@
 
 int handle_unsigned_int(va_list args)
 {
-	unsigned long int un = va_arg(args, unsigned long int);
+	unsigned int un = va_arg(args, unsigned int);
 
 	char buf[30];
 
