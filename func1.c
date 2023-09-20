@@ -50,6 +50,7 @@ int handle_address(va_list args)
 	snprintf(buff, sizeof(buff), "%p", ptr);
 	write(1, ptr, strlen(buff));
 	return (strlen(buff));
+}
 
 /**
  * handle_printing - prints the formatted strings
@@ -58,6 +59,8 @@ int handle_address(va_list args)
  *
  * Return: lenth of the string printed
  */
+
+
 int handle_printing(const char *format, va_list args)
 {
 	int i = 0, k = 0;
