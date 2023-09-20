@@ -50,34 +50,6 @@ int handle_address(va_list args)
 	snprintf(buff, sizeof(buff), "%p", ptr);
 	write(1, ptr, strlen(buff));
 	return (strlen(buff));
-}
-
-/**
- * print_some - prints the formatted strings
- * @format: formatted string
- * @args: argument passed
- *
- * Return: lenth of the string printed
- */
-int print_some(const char *format, va_list args)
-{
-	int i = 0, k = 0;
-
-	if (format[k] == 'h')
-	{
-		i += handle_hex(args);
-	}
-	else if (format[k] == 'H')
-	{
-		i += handle_Hex(args);
-	}
-	else if (format[k] == 'p')
-	{
-		i += handle_address(args);
-	}
-	return (i);
-}
-
 
 /**
  * handle_printing - prints the formatted strings
@@ -115,10 +87,18 @@ int handle_printing(const char *format, va_list args)
 	{
 		i += handle_unsigned_int(args);
 	}
-	else if (format[k] == 'h' || format[k] == 'H' || format[k] == 'p')
-	{
-		i += print_some(format, args);
-	}
+	else if (format[k] == 'h')
+        {
+                i += handle_hex(args);
+        }
+        else if (format[k] == 'H')
+        {
+                i += handle_Hex(args);
+        }
+        else if (format[k] == 'p')
+        {
+                i += handle_address(args);
+        }
 	else
 	{
 		write(1, "%", 1);
